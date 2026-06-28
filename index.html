@@ -920,11 +920,12 @@
       </div>
       <div class="form-group">
         <label for="date">Event / Shoot Date</label>
-        <div class="form-group">
+        
+        <input type="date" id="date" />
+      </div>
+      <div class="form-group">
   <label for="enddate">End Date (Optional)</label>
   <input type="date" id="enddate" />
-        </div>
-        <input type="date" id="date" />
       </div>
       <div class="form-group">
         <div class="form-group">
@@ -1062,18 +1063,48 @@
 
   // ── CONTACT FORM
   function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('button[type=submit]');
-    btn.textContent = '✓ Enquiry Sent!';
-    btn.style.background = '#2a9d4a';
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = 'Send Enquiry';
-      btn.style.background = '';
-      btn.disabled = false;
-      e.target.reset();
-    }, 4000);
+  e.preventDefault();
+
+  const name = document.getElementById("fname").value;
+  const phone = document.getElementById("phone").value;
+  const service = document.getElementById("service").value;
+  const date = document.getElementById("date").value;
+  const enddate = document.getElementById("enddate").value;
+  const location = document.getElementById("location").value;
+  const message = document.getElementById("message").value;
+
+  if(name==="" || phone==="" || service===""){
+      alert("Please fill all required fields.");
+      return;
   }
+
+  const whatsappNumber = "918866383635";
+
+  const text =
+`📸 *New Photography Enquiry*
+
+👤 Name : ${name}
+
+📱 Mobile : ${phone}
+
+🎉 Service : ${service}
+
+📅 Event Date : ${date}
+
+📅 End Date : ${enddate}
+
+📍 Location : ${location}
+
+📝 Requirements :
+${message}`;
+
+  window.open(
+    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`,
+    "_blank"
+  );
+
+  e.target.reset();
+}
 
   // ── TESTIMONIALS DRAG-SCROLL
   const track = document.getElementById('testimonialsTrack');
