@@ -111,11 +111,74 @@
       display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1800&q=80');
-      background-size: cover; background-position: center;
-    }
+     .hero-slider{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+}
+
+.hero-slide{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    animation:heroSlide 24s infinite;
+}
+
+.hero-slide:nth-child(1){
+    background-image:url("https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=500&q=80");
+    animation-delay:0s;
+}
+
+.hero-slide:nth-child(2){
+    background-image:url("https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=80");
+    animation-delay:6s;
+}
+
+.hero-slide:nth-child(3){
+    background-image:url("https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=500&q=80");
+    animation-delay:12s;
+}
+
+.hero-slide:nth-child(4){
+    background-image:url("https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=80");
+    animation-delay:18s;
+}
+
+.hero-slide::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.45);
+}
+
+@keyframes heroSlide{
+
+0%{
+opacity:0;
+transform:translateX(100%);
+}
+
+8%{
+opacity:1;
+transform:translateX(0);
+}
+
+25%{
+opacity:1;
+transform:translateX(0);
+}
+
+33%{
+opacity:0;
+transform:translateX(-100%);
+}
+
+100%{
+opacity:0;
+}
+}
     .hero-bg::after {
       content: '';
       position: absolute; inset: 0;
@@ -664,7 +727,17 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-slider">
+
+<div class="hero-slide"></div>
+
+<div class="hero-slide"></div>
+
+<div class="hero-slide"></div>
+
+<div class="hero-slide"></div>
+
+  </div>
   <div class="hero-content">
     <div class="hero-eyebrow">Xyz Studio </div>
     <h1 class="hero-title">Capturing Life's<br><em>Most Beautiful</em><br>Moments</h1>
